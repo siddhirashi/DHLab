@@ -1,0 +1,522 @@
+<!doctype html>
+<!--
+  DIGITAL HUMANITIES EXHIBITION TEMPLATE
+  Quick start:
+  1. Replace every item marked [EDIT].
+  2. Put each piece of work inside an "Assignment" block.
+  3. Save this file as index.html, upload it to a GitHub repository, and enable GitHub Pages.
+  Full publishing steps are in README.md. No software or build step is needed.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A student digital humanities portfolio exhibition.">
+    <title>Siddhi Rashi | Digital Humanities Portfolio</title>
+    <style>
+      :root {
+        --page-gutter: clamp(1rem, 4vw, 2rem);
+        --content-width: 1180px;
+        --ink: #18231f;
+        --muted: #52635b;
+        --paper: #f6f4ee;
+        --surface: #fffefa;
+        --line: #d8d8cf;
+        --green: #0d5b4f;
+        --green-deep: #073f37;
+        --gold: #c89b3c;
+        --focus: #bf4b0d;
+        --shadow: 0 18px 45px rgb(24 35 31 / 10%);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, transparent 0, transparent 24px, rgb(13 91 79 / 4%) 25px, transparent 26px) 0 0 / 100% 100%,
+          var(--paper);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+
+      a { color: var(--green); text-underline-offset: 0.16em; }
+      a:hover { color: var(--green-deep); }
+      a:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+      img, picture, video, iframe, svg, canvas { max-width: 100%; }
+      img, video, svg, canvas { height: auto; }
+      iframe { width: 100%; border: 0; }
+
+      .skip-link {
+        position: absolute;
+        top: -5rem;
+        left: 1rem;
+        z-index: 10;
+        padding: 0.65rem 0.9rem;
+        color: #fff;
+        background: var(--green-deep);
+      }
+      .skip-link:focus { top: 1rem; }
+
+      .site-header {
+        color: #fff;
+        background: var(--green-deep);
+        border-bottom: 5px solid var(--gold);
+      }
+      .header-inner, .layout, .site-footer { width: min(100%, var(--content-width)); margin: 0 auto; }
+      .header-inner { padding: 1.25rem var(--page-gutter) 1.4rem; }
+      .eyebrow, .label {
+        margin: 0;
+        color: inherit;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.25;
+        text-transform: uppercase;
+      }
+      .eyebrow { color: #e7d7aa; }
+      .wordmark { margin: 0.2rem 0 0; font-size: 1.05rem; }
+      .course-line { margin: 0.25rem 0 0; color: #d5e2dc; font-size: 0.92rem; }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+        gap: clamp(1.5rem, 5vw, 5rem);
+        padding: clamp(2rem, 6vw, 5.5rem) var(--page-gutter) 4rem;
+      }
+
+      .student-card {
+        align-self: start;
+        padding: 1.4rem;
+        background: var(--surface);
+        border-top: 5px solid var(--gold);
+        box-shadow: var(--shadow);
+      }
+      .student-card h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+      .metadata { margin: 0; }
+      .metadata > div { padding: 0.75rem 0; border-top: 1px solid var(--line); }
+      .metadata > div:first-child { border-top: 0; }
+      .metadata dt { font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      .metadata dd { margin: 0.16rem 0 0; font-size: 0.98rem; }
+      .student-note { margin: 1rem 0 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+      main { min-width: 0; container-type: inline-size; }
+      .hero { padding: 0 0 2.7rem; border-bottom: 1px solid var(--line); }
+      .project-kicker { color: var(--green); }
+      h1, h2, h3 { color: var(--ink); line-height: 1.15; }
+      h1 { max-width: 17ch; margin: 0.55rem 0 1.25rem; font-size: clamp(2.4rem, 6vw, 5.4rem); letter-spacing: -0.045em; }
+      h2 { margin: 0; font-size: clamp(1.65rem, 3vw, 2.4rem); letter-spacing: -0.025em; }
+      h3 { margin: 0 0 0.45rem; font-size: 1.2rem; }
+      .abstract { max-width: 68ch; margin: 0; font-size: clamp(1.12rem, 2vw, 1.35rem); line-height: 1.6; }
+      .abstract strong { color: var(--green-deep); }
+
+      .content-section { padding: 3.2rem 0; border-bottom: 1px solid var(--line); }
+      .section-heading { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 1.25rem; }
+      .section-number { color: var(--gold); font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; font-weight: 700; }
+      .content-section p, .content-section li { max-width: 72ch; }
+
+      /* EDIT HERE: Replace this example box with your essay, timeline, image gallery, map,
+         data visualisation, embedded media, or another form of project work. */
+      .edit-placeholder {
+        margin-top: 1.5rem;
+        padding: clamp(1.25rem, 4vw, 2.25rem);
+        background: #e8f0eb;
+        border: 2px dashed #5a8679;
+      }
+      .edit-placeholder > :first-child { margin-top: 0; }
+      .edit-placeholder > :last-child { margin-bottom: 0; }
+      .edit-callout { color: var(--green-deep); font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+
+      .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+      .project-grid article { padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); }
+      .project-grid p { margin-bottom: 0; font-size: 0.95rem; }
+
+      .assignment-list { display: grid; gap: clamp(1rem, 3vw, 1.5rem); margin-top: 1.8rem; }
+      .assignment {
+        padding: clamp(1.3rem, 4vw, 2.1rem);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 6px solid var(--green);
+      }
+      .assignment header { display: grid; grid-template-columns: auto 1fr; gap: 0.8rem 1rem; align-items: baseline; }
+      .assignment-index { color: var(--gold); font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; }
+      .assignment h3 { margin: 0; font-size: clamp(1.35rem, 2.5vw, 1.9rem); }
+      .assignment .assignment-abstract { margin: 1rem 0 0; font-size: 1.04rem; }
+      .assignment-repository { margin: 1.15rem 0 0; }
+      .repository-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        max-width: 100%;
+        padding: 0.55rem 0.8rem;
+        color: #fff;
+        background: var(--green);
+        border: 1px solid var(--green);
+        border-radius: 0.2rem;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.84rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-decoration: none;
+      }
+      .repository-link::after { content: "\2197"; font-size: 1rem; }
+      .repository-link:hover { color: #fff; background: var(--green-deep); border-color: var(--green-deep); }
+      .assignment-body { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+      .assignment-body > :last-child { margin-bottom: 0; }
+      .contents-nav { margin-top: 2rem; padding: 1.15rem 1.25rem; background: #e8f0eb; border-left: 4px solid var(--gold); }
+      .contents-nav ul { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; margin: 0.5rem 0 0; padding-left: 1.2rem; }
+      .contents-nav[hidden] { display: none; }
+
+      figure { margin: 1.75rem 0; }
+      figure img { display: block; width: 100%; max-width: 900px; height: auto; border: 1px solid var(--line); }
+      figcaption { margin-top: 0.65rem; color: var(--muted); font-size: 0.9rem; }
+      .media-frame {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        margin: 1.5rem 0;
+        background: var(--ink);
+      }
+      .media-frame > iframe, .media-frame > video { width: 100%; height: 100%; object-fit: contain; }
+
+      details { margin-top: 1.5rem; padding: 1rem 1.2rem; background: var(--surface); border-left: 4px solid var(--gold); }
+      summary { cursor: pointer; color: var(--green-deep); font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+      details p { margin-bottom: 0; }
+
+      .citation-list { padding-left: 1.3rem; }
+      .citation-list li { margin: 0.65rem 0; }
+      .site-footer { padding: 2.25rem var(--page-gutter) 3rem; color: var(--muted); font-size: 0.88rem; }
+      .site-footer p { margin: 0; }
+
+
+      .assignment-list { grid-template-columns: minmax(0, 1fr); }
+      .assignment { min-width: 0; }
+      h4 { margin: 1.5rem 0 0.4rem; font-size: 1.05rem; }
+      .assignment-body ol { padding-left: 1.3rem; }
+      .assignment-body li { margin: 0.35rem 0; }
+      .file-links { margin-top: 1.25rem; font-family: Arial, Helvetica, sans-serif; font-size: 0.88rem; }
+      .table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+      th, td { padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+      th { font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+      pre { overflow-x: auto; margin: 1.1rem 0; padding: 1rem; background: #e8f0eb; border-left: 4px solid var(--gold); font-size: 0.85rem; line-height: 1.5; }
+      code { font-family: Consolas, "Courier New", monospace; font-size: 0.92em; }
+      @media (prefers-color-scheme: dark) { pre { background: #16372e; } }
+
+      @media (min-width: 900px) {
+        .student-card { position: sticky; top: 1.25rem; }
+      }
+
+      @media (max-width: 860px) {
+        .layout { display: block; padding-top: 2rem; }
+        .student-card { margin-bottom: 2.5rem; }
+      }
+
+      /* Container queries keep assignment cards legible even when embedded in a narrow layout. */
+      @container (max-width: 34rem) {
+        .assignment header { grid-template-columns: 1fr; gap: 0.35rem; }
+        .contents-nav ul { display: grid; gap: 0.45rem; }
+      }
+
+      @media (max-width: 480px) {
+        .section-heading { gap: 0.6rem; }
+        .assignment { border-left-width: 4px; }
+        .contents-nav { padding: 1rem; }
+        .project-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #eef4ef;
+          --muted: #b5c3bc;
+          --paper: #101714;
+          --surface: #18221d;
+          --line: #415148;
+          --green: #81c8ae;
+          --green-deep: #c2ebd9;
+          --gold: #e5bd68;
+          --focus: #ffb26a;
+          --shadow: 0 18px 45px rgb(0 0 0 / 24%);
+        }
+        .site-header { color: #f5fff9; background: #062d28; }
+        .eyebrow { color: #f3d78c; }
+        .course-line { color: #d7e8df; }
+        .edit-placeholder, .contents-nav { background: #16372e; }
+        .edit-callout, .abstract strong, summary { color: #b9eed8; }
+        .repository-link { color: #062d28; background: #9fd7bd; border-color: #9fd7bd; }
+        .repository-link:hover { color: #062d28; background: #c2ebd9; border-color: #c2ebd9; }
+      }
+
+      @media print {
+        .site-header { color: var(--ink); background: transparent; border: 0; }
+        .layout { display: block; padding: 1rem 0; }
+        .student-card { margin: 1rem 0 2rem; box-shadow: none; border: 1px solid var(--line); }
+        a { color: var(--ink); }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to project</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <p class="eyebrow">Digital Humanities Student Exhibition</p>
+        <p class="wordmark">IIT (ISM) Dhanbad &middot; Department of HSS</p>
+        <p class="course-line">MA in DH &middot; Session 2026&ndash;27</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="student-card" aria-labelledby="student-details-heading">
+        <h2 id="student-details-heading">Student details</h2>
+
+        <!-- Keep these six items in this order. Replace only the value for Name. -->
+        <dl class="metadata">
+          <div>
+            <dt>Name</dt>
+            <dd> Siddhi Rashi</dd>
+          </div>
+          <div>
+            <dt>Assignment</dt>
+            <dd>Digital Humanities</dd>
+          </div>
+          <div>
+            <dt>Session</dt>
+            <dd>2026-27</dd>
+          </div>
+          <div>
+            <dt>Course</dt>
+            <dd>MA in DH</dd>
+          </div>
+          <div>
+            <dt>Department</dt>
+            <dd>HSS</dd>
+          </div>
+          <div>
+            <dt>Institution</dt>
+            <dd>IIT (ISM) Dhanbad</dd>
+          </div>
+        </dl>
+              </aside>
+
+      <main id="main-content">
+        <!-- EDIT HERE: This page collects several assignments by one student. -->
+        <section class="hero" aria-labelledby="portfolio-title">
+          <p class="label project-kicker">Student portfolio</p>
+          <h1 id="portfolio-title"> Siddhi Rashi&rsquo;s Digital Humanities Portfolio</h1>
+          <p class="abstract"><strong>Portfolio introduction.</strong> Four assignments, one thread: how far a computer can help with reading, and where a person still has to decide. I cleaned Hindi text for NLP, pulled the plants and animals out of five Indian classics with a retrieval pipeline, ran a seven-step synthetic reading of a short story with a local language model, and wrote a skill that teaches a model to guide students through that method. In each one the model finds and sorts, a script checks it, and I interpret. Each exhibition below shows its work and links to its repository.</p>
+
+          <nav class="contents-nav" aria-label="Assignments on this page">
+            <p class="label">On this page</p>
+            <ul>
+              <!-- This list updates itself when the page opens. It still works if JavaScript is unavailable. -->
+              <li><a href="#assignment-1">Assignment 01</a></li>
+              <li><a href="#assignment-2">Assignment 02</a></li>
+              <li><a href="#assignment-3">Assignment 03</a></li>
+              <li><a href="#assignment-4">Assignment 04</a></li>
+              </ul>
+          </nav>
+        </section>
+
+        <!--
+          ASSIGNMENTS: Each block below is one exhibition. Replace its title, abstract, and
+          visible work. To add another, copy an entire <article class="assignment"> block.
+          The page will automatically number it and add it to the navigation.
+        -->
+        <section class="content-section" aria-labelledby="assignments-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">01</span>
+            <h2 id="assignments-heading">Assignments</h2>
+          </div>
+
+          <div class="assignment-list">
+            <article class="assignment" id="assignment-1" aria-labelledby="assignment-1-title">
+              <header>
+                <span class="assignment-index">Assignment 01</span>
+                <h3 id="assignment-1-title">Hindi Stop Words for NLP</h3>
+              </header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> Stop words are small grammatical words that carry almost no topic information and are usually removed before text is analysed. I wrote a list of 24 Hindi stop words in Devanagari, grouped by grammatical role, with a short helper that uses the list to clean a sentence.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/siddhirashi/Project_1_Hindi_Stopwords" target="_blank" rel="noopener noreferrer">View this project&rsquo;s GitHub repository</a></p>
+              <div class="assignment-body">
+
+<p>The list has 24 words in Devanagari, sorted by grammatical job. The assignment sheet gave five sample words (&#2324;&#2352;, &#2354;&#2375;&#2325;&#2367;&#2344;, &#2351;&#2366;, &#2351;&#2361;, &#2357;&#2361;); I kept those and extended the list after reading a few ordinary Hindi paragraphs.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Group</th><th scope="col">Words</th></tr></thead><tbody><tr><td>Conjunctions</td><td><span lang="hi">और, लेकिन, या, क्योंकि</span></td></tr><tr><td>Pronouns and demonstratives</td><td><span lang="hi">मैं, हम, आप, यह, वह, इस, उस, कुछ</span></td></tr><tr><td>Postpositions</td><td><span lang="hi">का, की, के, को, से, में, पर</span></td></tr><tr><td>Auxiliary verbs</td><td><span lang="hi">है, हैं, था</span></td></tr><tr><td>Particles and negation</td><td><span lang="hi">भी, नहीं</span></td></tr></tbody></table></div>
+<p>A small helper finds the Devanagari words in a sentence with a regular expression (leaving out the danda <span lang="hi">।</span> so it does not stick to the last word) and drops the stop words:</p>
+<pre><code>_DEVANAGARI_WORD = re.compile(r&quot;[\u0900-\u0963\u0966-\u097F]+&quot;)
+_stopword_set = set(hindi_stopwords)
+
+def remove_stopwords(text):
+    tokens = _DEVANAGARI_WORD.findall(text)
+    return [t for t in tokens if t not in _stopword_set]</code></pre>
+<p><strong>Output.</strong> Running the script on one sentence removes six of its fourteen words and leaves what happens and where:</p>
+<pre lang="hi"><code>Stop words in list : 24
+Before             : वह गाँव में रहता है और हर सुबह नदी के किनारे टहलने जाता है।
+After              : गाँव रहता हर सुबह नदी किनारे टहलने जाता</code></pre>
+<p><strong>Limits.</strong> A short list leaves words behind (<span lang="hi">रहता</span> and <span lang="hi">हर</span> survive above). Whether a word is a stop word depends on the task: for sentiment analysis <span lang="hi">नहीं</span> must stay. Matching is exact, so inflected forms are not handled.</p>
+<p class="file-links">Files: <a href="https://github.com/siddhirashi/Project_1_Hindi_Stopwords/blob/main/hindi_stopwords.py" target="_blank" rel="noopener noreferrer">hindi_stopwords.py</a> &middot; <a href="https://github.com/siddhirashi/Project_1_Hindi_Stopwords#readme" target="_blank" rel="noopener noreferrer">README</a></p>
+
+              </div>
+            </article>
+
+            <article class="assignment" id="assignment-2" aria-labelledby="assignment-2-title">
+              <header>
+                <span class="assignment-index">Assignment 02</span>
+                <h3 id="assignment-2-title">Flora and Fauna in Indian Literature, Extracted with RAG</h3>
+              </header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> I wanted to know which plants and animals appear in five classic Indian texts without reading every page myself. A retrieval-augmented generation pipeline finds the passages most likely to mention them, a local LLM lists the names, and each name is checked against its passage. The result is 50 flora and 63 fauna names.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/siddhirashi/Project_2_Rag_flora_Fauna" target="_blank" rel="noopener noreferrer">View this project&rsquo;s GitHub repository</a></p>
+              <div class="assignment-body">
+
+<ol>
+<li><strong>Corpus.</strong> Five public-domain English translations: Kalidasa&rsquo;s <em>Shakuntala</em> and <em>Meghaduta</em>, Tagore&rsquo;s <em>Gitanjali</em>, the <em>Panchatantra</em> and the <em>Jataka</em>.</li>
+<li><strong>Chunking.</strong> About 1,200 characters per chunk with 200 overlap, giving 2,310 chunks.</li>
+<li><strong>Embedding.</strong> Each chunk is turned into a vector with <code>nomic-embed-text-v1.5</code> in LM Studio.</li>
+<li><strong>Retrieval.</strong> For each of ten categories (Trees, Plants, Flowers, Herbs, Crops, Mammals, Birds, Reptiles, Fish, Insects) I wrote two search sentences and kept the 6 closest chunks by cosine similarity.</li>
+<li><strong>Extraction.</strong> <code>qwen2.5-7b-instruct</code> (temperature 0) lists the plants and animals in each chunk as JSON.</li>
+<li><strong>Checking.</strong> A name is accepted only if its category is valid and the name literally appears in the chunk. Of 181 candidates, 146 were accepted and 35 rejected (30 bad category, 5 not in the passage).</li>
+</ol>
+<figure><img src="images/p2-extraction-summary.png" alt="Two charts. Left: distinct names per category, with mammals highest at 36 and fish lowest at 1. Right: accepted mentions per text, with the Jataka highest and Gitanjali at zero."><figcaption>Distinct names per category (left) and accepted mentions per source text (right). Categories are the ones the model chose.</figcaption></figure>
+<p><strong>Output.</strong> 50 flora and 63 fauna names, saved in the format the assignment asked for:</p>
+<pre><code>flora_RAG_extraction = [&#x27;lotus&#x27;, &#x27;jasmine&#x27;, &#x27;lilies&#x27;, &#x27;flowers&#x27;, &#x27;mango-tree&#x27;,
+                        &#x27;trees&#x27;, &#x27;acacias&#x27;, &#x27;aloe&#x27;, &#x27;ashoka-tree&#x27;, &#x27;assakanua&#x27;, ...]
+
+fauna_RAG_extraction = [&#x27;jackal&#x27;, &#x27;lion&#x27;, &#x27;deer&#x27;, &#x27;monkey&#x27;, &#x27;bees&#x27;,
+                        &#x27;crocodile&#x27;, &#x27;jackals&#x27;, &#x27;lions&#x27;, &#x27;peacock&#x27;, &#x27;snake&#x27;, ...]</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">Flora</th><th scope="col">Mentions</th><th scope="col">Fauna</th><th scope="col">Mentions</th></tr></thead><tbody><tr><td>lotus</td><td>8 (four texts)</td><td>jackal</td><td>4</td></tr><tr><td>jasmine</td><td>4</td><td>lion</td><td>4</td></tr><tr><td>lilies</td><td>4</td><td>deer</td><td>3</td></tr><tr><td>mango-tree</td><td>2</td><td>monkey</td><td>3</td></tr><tr><td>ashoka-tree</td><td>1</td><td>peacock</td><td>2</td></tr></tbody></table></div>
+<p><strong>What to check.</strong> Some names are filed in the wrong category (<em>elephant</em> under Reptiles, <em>fish</em> and <em>crab</em> under Mammals). Some entries are too general (<em>trees</em>, <em>birds</em>), and singular and plural both appear. <em>Gitanjali</em> gave no accepted names. The texts are scanned OCR, and the embedding prefixes in <code>config.py</code> are not the ones the nomic model documents, so retrieval is probably weaker than it could be.</p>
+<p class="file-links">Files: <a href="https://github.com/siddhirashi/Project_2_Rag_flora_Fauna/blob/main/flora_fauna.py" target="_blank" rel="noopener noreferrer">flora_fauna.py</a> &middot; <a href="https://github.com/siddhirashi/Project_2_Rag_flora_Fauna/blob/main/flora_fauna_report.txt" target="_blank" rel="noopener noreferrer">full report</a> &middot; <a href="https://github.com/siddhirashi/Project_2_Rag_flora_Fauna/blob/main/results/extraction_raw.json" target="_blank" rel="noopener noreferrer">raw results</a> &middot; <a href="https://github.com/siddhirashi/Project_2_Rag_flora_Fauna#readme" target="_blank" rel="noopener noreferrer">README</a></p>
+
+              </div>
+            </article>
+
+            <article class="assignment" id="assignment-3" aria-labelledby="assignment-3-title">
+              <header>
+                <span class="assignment-index">Assignment 03</span>
+                <h3 id="assignment-3-title">Synthetic Reading of &ldquo;Sultana&rsquo;s Dream&rdquo;</h3>
+              </header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> Using the seven-step synthetic reading method, I read part of Rokeya Sakhawat Hossain&rsquo;s 1905 story, formed a research question about the reversal of space, work and knowledge, and had a local LLM collect evidence from the whole text. I counted the evidence, charted it and read it through feminist theory.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/siddhirashi/Project_3_Synthetic_Reading" target="_blank" rel="noopener noreferrer">View this project&rsquo;s GitHub repository</a></p>
+              <div class="assignment-body">
+
+<p><strong>Research question.</strong> How does <em>Sultana&rsquo;s Dream</em> reverse the gendered division of space, work and knowledge, and what does that reversal say about the purdah system it criticises?</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Step</th><th scope="col">What I did</th></tr></thead><tbody><tr><td>1. Partial reading</td><td>Split the story into 4 equal parts and read a random 20% of each (28 of 140 paragraphs, seed 2026)</td></tr><tr><td>2. Initial impression</td><td>Wrote what I noticed, my position as a reader, the research problem and frameworks (feminist standpoint theory, feminist spatial criticism)</td></tr><tr><td>3. Text upload</td><td>Cleaned the full text and gave it to the model in four ordered segments</td></tr><tr><td>4. Query generation</td><td>Wrote a prompt with a fixed list of eight themes and a strict JSON format</td></tr><tr><td>5. Extraction</td><td><code>qwen2.5-7b-instruct</code> returned theme, quotation, note and strength for 20 hits; 13 quotations were verified word for word against the text</td></tr><tr><td>6. Visualisation</td><td>Heatmap and bar chart of the verified evidence</td></tr><tr><td>7. Interpretation</td><td>Read the charts through theory</td></tr></tbody></table></div>
+<figure><img src="images/p3-theme-heatmap.png" alt="Heatmap of eight themes across the four parts of Sultana&#x27;s Dream. Spatial segregation is present in all four parts; women&#x27;s education and critique of male governance are empty."><figcaption>Strength of evidence for each theme in each quarter of the story. Only verified quotations are counted.</figcaption></figure>
+<figure><img src="images/p3-theme-totals.png" alt="Bar chart of total evidence per theme. Spatial segregation is highest at 10, then reversal of gender roles at 8; two themes are at zero."><figcaption>The same evidence added up over the whole story.</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th scope="col">Part</th><th scope="col">Theme</th><th scope="col">Quotation</th><th scope="col">Verified</th></tr></thead><tbody><tr><td>1</td><td>Spatial segregation</td><td>&ldquo;We shut our men indoors.&rdquo;</td><td>yes</td></tr><tr><td>2</td><td>Spatial segregation</td><td>&ldquo;But dear Sultana, how unfair it is to shut in the harmless women and let loose the men.&rdquo;</td><td>yes</td></tr><tr><td>3</td><td>Spatial segregation</td><td>&ldquo;On the following day the Queen called upon all men to retire into zenanas for the sake of honour and liberty.&rdquo;</td><td>yes</td></tr><tr><td>3</td><td>Technology and nature</td><td>&ldquo;They invented an instrument by which they could collect as much sun-heat as they wanted&hellip;&rdquo;</td><td>yes</td></tr><tr><td>3</td><td>Women&rsquo;s education and science</td><td>&ldquo;Education was spread far and wide among women, and early marriage also was stopped&hellip;&rdquo;</td><td>no</td></tr></tbody></table></div>
+<h4>Reading the result</h4>
+<p>Spatial segregation is the only theme that runs through all four parts, which suggests it is the story&rsquo;s structure. Read with Doreen Massey, the swap shows that a woman&rsquo;s &ldquo;proper place&rdquo; was an arrangement, not nature. Read with standpoint theory (Harding, Hartsock), the women build science while the men laugh at it as &ldquo;a sentimental nightmare&rdquo;, and the narrator admits her own &ldquo;scientific knowledge was very limited&rdquo;. Purdah is not abolished: the Lady Principal asks that the men enter the zenanas &ldquo;for the sake of purdah&rdquo;, and defending seclusion as honour and safety for men makes the same defence for women look like an argument and not a fact of nature.</p>
+<p><strong>Limits.</strong> The two empty rows are not a finding about the story. The model&rsquo;s quotations for them were real passages that it altered or joined, so my exact-match check rejected them. 7 of 20 hits failed the check, some labels are noisy, and the strength scores are the model&rsquo;s own opinion, so the charts show where to look, not proof. The full interpretation and works cited are in the repository.</p>
+<p class="file-links">Files: <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading/blob/main/corpus/sultanas_dream.txt" target="_blank" rel="noopener noreferrer">corpus</a> &middot; <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading/blob/main/partial_reading.txt" target="_blank" rel="noopener noreferrer">partial reading</a> &middot; <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading/blob/main/prompt.txt" target="_blank" rel="noopener noreferrer">prompt</a> &middot; <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading/blob/main/Theme_JSON.py" target="_blank" rel="noopener noreferrer">extracted themes</a> &middot; <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading/blob/main/interpretation.md" target="_blank" rel="noopener noreferrer">interpretation</a> &middot; <a href="https://github.com/siddhirashi/Project_3_Synthetic_Reading#readme" target="_blank" rel="noopener noreferrer">README</a></p>
+
+              </div>
+            </article>
+
+            <article class="assignment" id="assignment-4" aria-labelledby="assignment-4-title">
+              <header>
+                <span class="assignment-index">Assignment 04</span>
+                <h3 id="assignment-4-title">A Skill for an LLM: Synthetic Reading Guide</h3>
+              </header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> A skill is a Markdown file of instructions that teaches a model one kind of job. Mine helps a literature student move from a partial reading to a research problem, a justified theory and a precise extraction prompt, without writing the interpretation for them.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/siddhirashi/Project_4_LLM_Skill" target="_blank" rel="noopener noreferrer">View this project&rsquo;s GitHub repository</a></p>
+              <div class="assignment-body">
+
+<p>While doing the synthetic reading, running the model was the easy part. The hard part was the middle: going from a few sampled lines to a research problem, a defensible theory and a prompt that asks for the right thing. The skill is a Markdown file that teaches a model to guide a student through exactly that stretch, steps 2 to 4 of the method.</p>
+<p>The header tells a tool when to load it:</p>
+<pre><code>---
+name: synthetic-reading-guide
+description: Helps a literature or cultural studies student turn a partial reading of a literary text into a research problem, a justified choice of theory, and a precise extraction prompt for an LLM. Use when someone has read part of a story, poem, play or novel and asks what to research, which framework fits, or how to prompt a model to pull evidence out of the text.
+---</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">Move</th><th scope="col">What the model does</th></tr></thead><tbody><tr><td>1. Read only what is given</td><td>Works from the pasted lines; adds no plot points or quotations from memory</td></tr><tr><td>2. Reflect the impression</td><td>Says what stands out, labelling each point &ldquo;visible in the lines&rdquo; or &ldquo;my guess&rdquo;, then asks for the student&rsquo;s own reaction</td></tr><tr><td>3. Draft research problems</td><td>Up to three, each one sentence tied to the sample</td></tr><tr><td>4. Ask about positionality</td><td>Asks, gives an example blind spot, and does not answer for the student</td></tr><tr><td>5. Suggest frameworks</td><td>One main and at most one supporting, each with what it cannot see</td></tr><tr><td>6. Write the extraction prompt</td><td>Eight labelled blocks: role, question, lens, text, themes, task, rules, output format</td></tr><tr><td>7. Prepare for interpretation</td><td>Lists what to check by hand; counts support an argument but do not make it</td></tr></tbody></table></div>
+<p><strong>Design choices.</strong> It does not write the essay or the interpretation. It separates what is visible in the text from what is a guess. It asks at most two questions per reply and stays under 600 words. It tells the student to read a primary source before citing any framework. The prompt it builds asks for short word-for-word quotations and for a script check against the source, because in my own run 7 of 20 quotations failed that check.</p>
+<p class="file-links">Files: <a href="https://github.com/siddhirashi/Project_4_LLM_Skill/blob/main/synthetic_reading_guide_skill.md" target="_blank" rel="noopener noreferrer">synthetic_reading_guide_skill.md</a> &middot; <a href="https://github.com/siddhirashi/Project_4_LLM_Skill#readme" target="_blank" rel="noopener noreferrer">README</a></p>
+
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- OPTIONAL: Keep, adapt, or delete this section. -->
+        <section class="content-section" aria-labelledby="reflection-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">02</span>
+            <h2 id="reflection-heading">Portfolio reflection</h2>
+          </div>
+          <p>The most useful lesson was about checking. In the flora and fauna project, the model sometimes filed an elephant under reptiles; in the synthetic reading, 7 of its 20 quotations did not match the story word for word. Each time, a simple script check caught the problem, and looking at what was caught taught me more than the clean results did. It also changed how I read the charts: the two empty themes in assignment 3 are a result of my own strict check, not a fact about the story. Across all four projects the same division of labour held up. A model is good at finding and sorting, a script is good at verifying, and the reading, meaning the choice of question, theory and interpretation, stays with the researcher. The skill in assignment 4 is my attempt to write that division down for someone else.</p>
+          <details>
+            <summary>Optional: methods note</summary>
+            <p>All models ran locally in LM Studio (<code>qwen2.5-7b-instruct</code> for extraction, <code>nomic-embed-text-v1.5</code> for embeddings, temperature 0), with Python for the scripts and matplotlib for the charts. All texts are public-domain English translations or originals, so they could be shared. Names and categories in assignment 2 come from the model and have not been fully corrected by hand.</p>
+          </details>
+        </section>
+
+        <!-- OPTIONAL: Cite all sources, images, datasets, and tools you used across the portfolio. -->
+        <section class="content-section" aria-labelledby="sources-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">03</span>
+            <h2 id="sources-heading">Sources and acknowledgements</h2>
+          </div>
+          <ul class="citation-list">
+            <li>Hossain, Rokeya Sakhawat. &ldquo;Sultana&rsquo;s Dream.&rdquo; <em>The Indian Ladies&rsquo; Magazine</em>, Madras, 1905.</li>
+            <li>Kalidasa. <em>Shakuntala</em>, trans. Arthur W. Ryder, Everyman&rsquo;s Library; <em>Meghaduta</em> (<em>The Cloud Messenger</em>), trans. H. H. Wilson; Tagore, Rabindranath. <em>Gitanjali</em> (1912); <em>The Panchatantra</em>, trans. Arthur W. Ryder (1925); <em>The Jataka</em>, ed. E. B. Cowell, Cambridge University Press. Digitised copies from the Internet Archive and Google Books.</li>
+            <li>Harding, Sandra. <em>Whose Science? Whose Knowledge?</em> Cornell UP, 1991. Hartsock, Nancy C. M. &ldquo;The Feminist Standpoint.&rdquo; <em>Discovering Reality</em>, ed. Harding and Hintikka, D. Reidel, 1983. Massey, Doreen. <em>Space, Place and Gender.</em> U of Minnesota P, 1994.</li>
+            <li>Synthetic reading method: seven-step procedure from the class handout, Monsoon Semester 2026 (<a href="https://www.euppublishing.com/doi/pdf/10.3366/ijhac.2026.0378" target="_blank" rel="noopener noreferrer">source cited in the handout</a>).</li>
+            <li>Tools: Python, LM Studio, matplotlib. The charts in assignments 2 and 3 were made by me from my own results.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <p>Digital Humanities Student Exhibition &middot; Department of HSS &middot; IIT (ISM) Dhanbad</p>
+    </footer>
+    <script>
+      /*
+        Keeps the assignment labels and page navigation in sync. Students only need to copy,
+        delete, or move an .assignment block; this script does the numbering on page load.
+      */
+      (() => {
+        const assignments = [...document.querySelectorAll('.assignment')];
+        const contentsNav = document.querySelector('.contents-nav');
+        const contentsList = contentsNav?.querySelector('ul');
+
+        if (!assignments.length || !contentsList) {
+          if (contentsNav) contentsNav.hidden = true;
+          return;
+        }
+
+        const links = assignments.map((assignment, index) => {
+          const number = String(index + 1).padStart(2, '0');
+          const assignmentId = `assignment-${index + 1}`;
+          const heading = assignment.querySelector('h3');
+          const indexLabel = assignment.querySelector('.assignment-index');
+          const title = heading?.textContent.trim() || `Assignment ${number}`;
+
+          assignment.id = assignmentId;
+          if (heading) {
+            heading.id = `${assignmentId}-title`;
+            assignment.setAttribute('aria-labelledby', heading.id);
+          }
+          if (indexLabel) indexLabel.textContent = `Assignment ${number}`;
+
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${assignmentId}`;
+          link.textContent = `Assignment ${number}: ${title}`;
+          item.append(link);
+          return item;
+        });
+
+        contentsList.replaceChildren(...links);
+      })();
+    </script>
+  </body>
+</html>
