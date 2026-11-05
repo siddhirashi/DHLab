@@ -27,11 +27,19 @@ images/        figures used on the page
 README.md      this file
 ```
 
-| Image | Used in |
-|---|---|
-| `images/p2-extraction-summary.png` | Assignment 2: names per category and mentions per text |
-| `images/p3-theme-heatmap.png` | Assignment 3: themes across the four parts of the story |
-| `images/p3-theme-totals.png` | Assignment 3: total evidence per theme |
+### Figures on the page
+
+**Assignment 2: distinct names per category (left) and accepted mentions per source text (right)**
+
+![Two charts: distinct flora and fauna names per category, and accepted mentions per source text](images/p2-extraction-summary.png)
+
+**Assignment 3: strength of evidence for each theme in each quarter of "Sultana's Dream"**
+
+![Heatmap of eight themes across the four parts of Sultana's Dream](images/p3-theme-heatmap.png)
+
+**Assignment 3: total evidence per theme over the whole story**
+
+![Bar chart of total evidence per theme](images/p3-theme-totals.png)
 
 The charts were made by me from my own results, using matplotlib.
 
