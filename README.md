@@ -4,7 +4,7 @@
 
 A single-page exhibition of my four Digital Humanities assignments for the Monsoon Semester 2026. Each assignment is shown on the page with its abstract, its output, and a button to its own GitHub repository.
 
-**Live site:** `https://siddhirashi.github.io/REPOSITORY-NAME/` (replace `REPOSITORY-NAME` with this repository's name once GitHub Pages is on)
+**Live site:** `https://dhlab.vercel.app` 
 
 ## The four assignments
 
