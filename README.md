@@ -10,7 +10,7 @@ A single-page exhibition of my four Digital Humanities assignments for the Monso
 
 | # | Assignment | What it does | Repository |
 |---|---|---|---|
-| 1 | Hindi stop words | A list of 24 Hindi stop words in Devanagari, grouped by grammatical role, with a helper that removes them from a sentence | [Project_1_Hindi_Stopwords](https://github.com/siddhirashi/Project_1_Hindi_Stopwords) |
+| 1 | Hindi stop words | A list of 200 Hindi stop words in Devanagari, grouped by grammatical role, with a helper that removes them from a sentence | [Project_1_Hindi_Stopwords](https://github.com/siddhirashi/Project_1_Hindi_Stopwords) |
 | 2 | Flora and fauna with RAG | A retrieval-augmented generation pipeline over five Indian classics that extracts 50 flora and 63 fauna names, each checked against its source passage | [Project_2_Rag_flora_Fauna](https://github.com/siddhirashi/Project_2_Rag_flora_Fauna) |
 | 3 | Synthetic reading | A seven-step synthetic reading of Rokeya Sakhawat Hossain's "Sultana's Dream" with a local LLM, charts of the evidence and an interpretation through feminist theory | [Project_3_Synthetic_Reading](https://github.com/siddhirashi/Project_3_Synthetic_Reading) |
 | 4 | LLM skill | A Markdown skill that guides a student from a partial reading to a research problem, a theory and an extraction prompt | [Project_4_LLM_Skill](https://github.com/siddhirashi/Project_4_LLM_Skill) |
